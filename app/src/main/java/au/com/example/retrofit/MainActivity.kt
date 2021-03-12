@@ -20,11 +20,19 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.repos.observe(this, {
             when (it) {
                 is ApiSuccessResponse -> processResponse(it.body)
-                is ApiEmptyResponse -> TODO()
-                is ApiErrorResponse -> TODO()
+                is ApiEmptyResponse -> emptyResponse()
+                is ApiErrorResponse -> errorResponse(it.errorMessage)
             }
             Log.d("", "")
         })
+    }
+
+    private fun emptyResponse() {
+        Log.d("", "")
+    }
+
+    private fun errorResponse(errorMessage: String) {
+        Log.d("", "")
     }
 
     private fun processResponse(repos: List<Repo>) {
