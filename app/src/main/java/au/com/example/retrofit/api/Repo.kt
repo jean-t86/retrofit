@@ -1,4 +1,4 @@
-package au.com.example.retrofit
+package au.com.example.retrofit.api
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

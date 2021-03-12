@@ -1,4 +1,4 @@
-package au.com.example.retrofit.util
+package au.com.example.retrofit.api.util
 
 import retrofit2.Call
 import retrofit2.CallAdapter

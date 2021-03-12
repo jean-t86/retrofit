@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package au.com.example.retrofit.util
+package au.com.example.retrofit.api.util
 
 import retrofit2.Response
 

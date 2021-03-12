@@ -1,7 +1,7 @@
-package au.com.example.retrofit
+package au.com.example.retrofit.api
 
-import au.com.example.retrofit.util.ApiResponse
-import au.com.example.retrofit.util.ApiResponseAdapterFactory
+import au.com.example.retrofit.api.util.ApiResponse
+import au.com.example.retrofit.api.util.ApiResponseAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
