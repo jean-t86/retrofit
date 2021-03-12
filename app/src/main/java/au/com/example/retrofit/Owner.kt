@@ -1,42 +1,44 @@
 package au.com.example.retrofit
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class Owner(
-    @SerializedName("avatar_url")
+    @Json(name = "avatar_url")
     val avatarUrl: String,
-    @SerializedName("events_url")
+    @Json(name = "events_url")
     val eventsUrl: String,
-    @SerializedName("followers_url")
+    @Json(name = "followers_url")
     val followersUrl: String,
-    @SerializedName("following_url")
+    @Json(name = "following_url")
     val followingUrl: String,
-    @SerializedName("gists_url")
+    @Json(name = "gists_url")
     val gistsUrl: String,
-    @SerializedName("gravatar_id")
+    @Json(name = "gravatar_id")
     val gravatarId: String,
-    @SerializedName("html_url")
+    @Json(name = "html_url")
     val htmlUrl: String,
-    @SerializedName("id")
+    @Json(name = "id")
     val id: Int,
-    @SerializedName("login")
+    @Json(name = "login")
     val login: String,
-    @SerializedName("node_id")
+    @Json(name = "node_id")
     val nodeId: String,
-    @SerializedName("organizations_url")
+    @Json(name = "organizations_url")
     val organizationsUrl: String,
-    @SerializedName("received_events_url")
+    @Json(name = "received_events_url")
     val receivedEventsUrl: String,
-    @SerializedName("repos_url")
+    @Json(name = "repos_url")
     val reposUrl: String,
-    @SerializedName("site_admin")
+    @Json(name = "site_admin")
     val siteAdmin: Boolean,
-    @SerializedName("starred_url")
+    @Json(name = "starred_url")
     val starredUrl: String,
-    @SerializedName("subscriptions_url")
+    @Json(name = "subscriptions_url")
     val subscriptionsUrl: String,
-    @SerializedName("type")
+    @Json(name = "type")
     val type: String,
-    @SerializedName("url")
+    @Json(name = "url")
     val url: String
 )
