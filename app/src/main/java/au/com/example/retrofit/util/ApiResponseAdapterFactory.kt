@@ -1,5 +1,6 @@
 package au.com.example.retrofit.util
 
+import androidx.lifecycle.LiveData
 import retrofit2.Call
 import retrofit2.CallAdapter
 import retrofit2.Retrofit
@@ -12,30 +13,22 @@ class ApiResponseAdapterFactory : CallAdapter.Factory() {
         annotations: Array<out Annotation>,
         retrofit: Retrofit
     ): CallAdapter<*, *>? {
-
-        // suspend functions wrap the response type in `Call`
-        if (Call::class.java != getRawType(returnType)) {
+        val observerType = getParameterUpperBound(0, returnType as ParameterizedType)
+        val rawObserverType = getRawType(observerType)
+        if (getRawType(returnType) != Call::class.java &&
+            rawObserverType != LiveData::class.java) {
             return null
         }
 
-        // check first that the return type is `ParameterizedType`
-        check(returnType is ParameterizedType) {
-            "return type must be parameterized as Call<ApiResponse<<Foo>>"
+        val observableType = getParameterUpperBound(0, observerType as ParameterizedType)
+        val rawObservableType = getRawType(observableType)
+        if (rawObservableType != ApiResponse::class.java) {
+            throw IllegalArgumentException("type must be a resource")
         }
-
-        // get the response type inside the `Call` type
-        val responseType = getParameterUpperBound(0, returnType)
-        // if the response type is not ApiResponse then we can't handle this type, so we return null
-        if (getRawType(responseType) != ApiResponse::class.java) {
-            return null
+        if (observableType !is ParameterizedType) {
+            throw IllegalArgumentException("resource must be parameterized")
         }
-
-        // the response type is ApiResponse and should be parameterized
-        check(responseType is ParameterizedType) {
-            "Response must be parameterized as ApiResponse<Foo>"
-        }
-
-        val bodyType = getParameterUpperBound(0, responseType)
+        val bodyType = getParameterUpperBound(0, observableType)
         return ApiResponseCallAdapter<Any>(bodyType)
     }
 }

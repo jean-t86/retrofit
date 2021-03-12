@@ -8,15 +8,12 @@ import au.com.example.retrofit.util.ApiResponse
 import kotlinx.coroutines.launch
 
 class MainViewModel : ViewModel() {
-
-    private var _repos: MutableLiveData<ApiResponse<List<Repo>>> = MutableLiveData()
-    val repos: LiveData<ApiResponse<List<Repo>>>
-        get() = _repos
+    var repos: LiveData<ApiResponse<List<Repo>>> = MutableLiveData()
 
     init {
         val gitHubService = getGitHubService()
         viewModelScope.launch {
-            _repos.value = gitHubService.listRepos("jean-t86")
+            repos = gitHubService.listRepos("jean-t86")
         }
     }
 }

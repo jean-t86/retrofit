@@ -1,5 +1,6 @@
 package au.com.example.retrofit
 
+import androidx.lifecycle.LiveData
 import au.com.example.retrofit.util.ApiResponse
 import au.com.example.retrofit.util.ApiResponseAdapterFactory
 import retrofit2.Retrofit
@@ -11,7 +12,7 @@ const val BASE_URL = "https://api.github.com/"
 
 interface GitHubService {
     @GET("users/{user}/repos")
-    suspend fun listRepos(@Path("user") user: String): ApiResponse<List<Repo>>
+    suspend fun listRepos(@Path("user") user: String): LiveData<ApiResponse<List<Repo>>>
 }
 
 fun getGitHubService(): GitHubService {
